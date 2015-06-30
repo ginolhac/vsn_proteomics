@@ -1,5 +1,7 @@
 #### test case for rounding issues with the VSN package
 
+this repo is linked to the following question on bioconductor  
+https://support.bioconductor.org/p/69273/
 
 ##### Usage
 
