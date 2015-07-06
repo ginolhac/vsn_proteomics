@@ -10,22 +10,23 @@ deb <- read_tsv("deb_fullmelt_24_2_1.25_drop_norm_arcsinh.tsv", col_names = TRUE
 df <- inner_join(mac, deb, by = c("Accession", "condition", "variable"))
 
 df %>%
-  filter(variable == "Q.Value") %>%
+  filter(variable == "P.Value") %>%
   ggplot()+
   geom_point(aes(x = value.x, y = value.y))+
   scale_x_log10()+
   scale_y_log10()+
   theme_light(16)+
-  xlab("log10(qvalue) mac")+
-  ylab("log10(qvalue) debian")
+  xlab("log10(pvalue) mac")+
+  ylab("log10(pvalue) debian")
 
 df %>%
-  filter(variable == "Q.Value") %>%
+  filter(variable == "P.Value") %>%
   mutate(diff = value.x - value.y) %>%
   ggplot()+
   geom_density(aes(x = diff), fill = "orange", alpha = 0.6)+
   theme_light(16)+
-  xlim(-1e-3, 4e-3)
+  xlab("diff unadjusted pvalues")
+  #xlim(-1e-3, 4e-3)
 
 mac %>%
   dcast(Accession + platform + condition ~ variable) %>%
